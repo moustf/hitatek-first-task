@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Table } from './components/Table/Tables';
 import { AddNewStudent } from './components/AddNewStudent/AddNewStudent';
 import { NewStudentData } from './interfaces/NewStudentData';
-import { UpdateStudent } from './components/UpdateForm/UpdateStudent';
+import { UpdateStudent } from './components/UpdateStudent/UpdateStudent';
 import './App.css';
 
 function App() {
