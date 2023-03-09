@@ -1,7 +1,5 @@
+import { NewStudentData } from './NewStudentData';
+
 export type UserData = {
-  id: number;
-  firstName: string;
-  surname: string;
-  midterm: number;
-  final: number;
-}
+  id: string;
+} & NewStudentData;

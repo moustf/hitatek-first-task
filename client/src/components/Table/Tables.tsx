@@ -1,10 +1,20 @@
-import { FC, useEffect, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import axios from 'axios';
+import { v4 as uuid } from 'uuid';
 
 import { TableRow } from '../TableRow/TableRow';
 import { UserData } from '../../interfaces/UserData';
+import { NewStudentData } from '../../interfaces/NewStudentData';
+import './Table.css';
 
-export const Table: FC = () => {
+export const Table: FC<{
+  refetch: boolean,
+  setRefetch: Dispatch<SetStateAction<boolean>>,
+  studentToUpdate: NewStudentData,
+  setShowUpdateForm: Dispatch<SetStateAction<boolean>>,
+  setStudentToUpdate: Dispatch<SetStateAction<NewStudentData>>,
+  setIdToUpdate: Dispatch<SetStateAction<number>>,
+}> = ({ refetch, setRefetch, studentToUpdate, setShowUpdateForm, setStudentToUpdate, setIdToUpdate }) => {
   const [students, setStudents] = useState<UserData[] | []>([]);
 
   useEffect(() => {
@@ -12,11 +22,11 @@ export const Table: FC = () => {
 
     fetchStudents()
       .then((data) => setStudents(data.data.data));
-  }, []);
+  }, [refetch]);
 
   return (
-    <table className="students_table">
-      <thead>
+    <table className="students-table">
+      <thead className='head-row'>
         <tr>
           <th>First Name</th>
           <th>Surname</th>
@@ -28,7 +38,19 @@ export const Table: FC = () => {
       <tbody>
         {
           students.map(({ id, firstName, surname, midterm, final }) => (
-            <TableRow id={id} firstName={firstName} surname={surname} midterm={midterm} final={final} />
+            <TableRow
+              key={uuid()}
+              id={id}
+              firstName={firstName}
+              surname={surname}
+              midterm={midterm}
+              final={final}
+              setRefetch={setRefetch}
+              studentToUpdate={studentToUpdate}
+              setShowUpdateForm={setShowUpdateForm}
+              setStudentToUpdate={setStudentToUpdate}
+              setIdToUpdate={setIdToUpdate}
+            />
           ))
         }
       </tbody>

@@ -1,0 +1,19 @@
+.students-table {
+  max-height: 60vh;
+  overflow-y: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.students-table .head-row {
+  background: #c9dff0;
+}
+
+td, th {
+  width: 10rem;
+  height: 5rem;
+  text-align: center;
+}
