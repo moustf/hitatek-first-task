@@ -8,8 +8,6 @@ import type { Application } from './declarations'
 import { logError } from './hooks/log-error'
 import { postgresql } from './postgresql'
 import { services } from './services/index'
-import { StudentService } from './services/student/student.class'
-import { getOptions } from './services/student/student.class'
 
 const app: Application = koa(feathers())
 
